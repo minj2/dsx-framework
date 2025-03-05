@@ -1,0 +1,31 @@
+name: Update Storybook from Figma
+on:
+  schedule:
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm install
+      - run: echo "FIGMA_API_KEY is $FIGMA_API_KEY" # 디버깅용
+      - run: echo "FIGMA_FILE_ID is $FIGMA_FILE_ID" # 디버깅용
+      - run: node fetch-figma.js
+        env:
+          FIGMA_API_KEY: ${{ secrets.FIGMA_API_KEY }}
+          FIGMA_FILE_ID: ${{ secrets.FIGMA_FILE_ID }}
+      - run: |
+          git config user.email "action@github.com"
+          git config user.name "GitHub Action"
+          git add figmaComponents.json
+          git commit -m "Update Figma components" || echo "No changes"
+          git push
+      - run: npm run build-storybook
+      - uses: JamesIves/github-pages-deploy-action@4.1.5
+        with:
+          branch: gh-pages
+          folder: storybook-static
