@@ -9,13 +9,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
+          submodules: true
           fetch-depth: 0  # 전체 Git 기록을 가져와서 package.json 누락 방지
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
       - run: ls -al  # 디버깅용 (package.json 위치 확인)
       - run: npm install
-        working-directory: dsx-framework  # package.json이 있는 폴더 지정
+        working-directory: ./dsx-framework  # package.json이 있는 폴더 지정
       - run: echo "FIGMA_API_KEY is $FIGMA_API_KEY"
       - run: echo "FIGMA_FILE_ID is $FIGMA_FILE_ID"
       - run: node fetch-figma.js
@@ -29,7 +30,7 @@ jobs:
           git commit -m "Update Figma components" || echo "No changes"
           git push
       - run: npm run build-storybook
-        working-directory: dsx-framework  # package.json이 있는 폴더 지정
+        working-directory: ./dsx-framework  # package.json이 있는 폴더 지정
       - uses: JamesIves/github-pages-deploy-action@4.1.5
         with:
           branch: gh-pages
