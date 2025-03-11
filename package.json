@@ -11,7 +11,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_504938e51ebaa18"
+    "chromatic": "npx chromatic --project-token=$CHROMATIC_PROJECT_TOKEN"
   },
   "repository": {
     "type": "git",
@@ -26,18 +26,20 @@
   "homepage": "https://github.com/minj2/dsx-framework#readme",
   "devDependencies": {
     "@chromatic-com/storybook": "^3.2.4",
-    "@storybook/addon-docs": "^8.6.0",
-    "@storybook/addon-essentials": "^8.6.0",
-    "@storybook/addon-interactions": "^8.6.0",
-    "@storybook/addon-onboarding": "^8.6.0",
-    "@storybook/blocks": "^8.6.0",
-    "@storybook/react": "^8.6.0",
+    "@storybook/addon-docs": "^8.6.4",
+    "@storybook/addon-essentials": "^8.6.4",
+    "@storybook/addon-interactions": "^8.6.4",
+    "@storybook/addon-onboarding": "^8.6.4",
+    "@storybook/blocks": "^8.6.4",
+    "@storybook/react": "^8.6.4",
     "@storybook/react-vite": "^8.6.4",
-    "@storybook/test": "^8.6.0",
+    "@storybook/test": "^8.6.4",
     "@vitejs/plugin-react": "^4.3.4",
+    "chromatic": "^11.26.0",
+    "dotenv": "^16.4.7",
     "esbuild": "^0.25.0",
     "prop-types": "^15.8.1",
-    "storybook": "^8.6.0",
+    "storybook": "^8.6.4",
     "vite": "^6.2.0"
   },
   "dependencies": {
@@ -75,7 +77,6 @@
     "dequal": "^2.0.3",
     "doctrine": "^3.0.0",
     "dom-accessibility-api": "^0.5.16",
-    "dotenv": "^16.4.7",
     "dunder-proto": "^1.0.1",
     "eastasianwidth": "^0.2.0",
     "electron-to-chromium": "^1.5.104",
